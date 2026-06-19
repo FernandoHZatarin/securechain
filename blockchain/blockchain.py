@@ -1,5 +1,5 @@
 """
-Cria uma blockchain
+Cria uma blockchain e valida ela
 """
 
 import hashlib
@@ -54,38 +54,35 @@ class Blockchain:
             with open(self.caminho_arquivo, "r", encoding="utf-8") as f:
                 dados = json.load(f)
                 self.cadeia = [Bloco.from_dict(b) for b in dados]
-
         if not self.cadeia:
-            genesis = Bloco(
-                id_bloco=0,
-                evento="Bloco genese - inicializacao da blockchain",
-                hash_anterior="0" * 64
-            )
+            genesis = Bloco(id_bloco=0, evento="Bloco genese - inicializacao da blockchain", hash_anterior="0" * 64)
             self.cadeia = [genesis]
             self._salvar()
 
     def _salvar(self):
         with open(self.caminho_arquivo, "w", encoding="utf-8") as f:
-            json.dump(
-                [b.to_dict() for b in self.cadeia],
-                f,
-                indent=2,
-                ensure_ascii=False
-            )
+            json.dump([b.to_dict() for b in self.cadeia], f, indent=2, ensure_ascii=False)
 
     def adicionar_bloco(self, evento):
         ultimo_bloco = self.cadeia[-1]
         novo_id = ultimo_bloco.id + 1
-
-        novo_bloco = Bloco(
-            id_bloco=novo_id,
-            evento=evento,
-            hash_anterior=ultimo_bloco.hash_atual
-        )
-
+        novo_bloco = Bloco(id_bloco=novo_id, evento=evento, hash_anterior=ultimo_bloco.hash_atual)
         self.cadeia.append(novo_bloco)
         self._salvar()
         return novo_bloco
+
+    def validar_cadeia(self):
+        problemas = []
+        for i, bloco in enumerate(self.cadeia):
+            hash_recalculado = bloco.calcular_hash()
+            if hash_recalculado != bloco.hash_atual:
+                problemas.append(f"Bloco {bloco.id}: hash adulterado.")
+            if i > 0:
+                bloco_anterior = self.cadeia[i - 1]
+                if bloco.hash_anterior != bloco_anterior.hash_atual:
+                    problemas.append(f"Bloco {bloco.id}: encadeamento quebrado com o bloco {bloco_anterior.id}.")
+        valido = len(problemas) == 0
+        return valido, problemas
 
     def imprimir_cadeia(self):
         for bloco in self.cadeia:
@@ -101,6 +98,12 @@ def registrar_evento(evento):
 if __name__ == "__main__":
     bc = Blockchain()
     bc.adicionar_bloco("Teste manual de execucao do modulo blockchain.py")
+
+    valido, problemas = bc.validar_cadeia()
+    print(f"Cadeia valida: {valido}")
+    if problemas:
+        for p in problemas:
+            print(f"  - {p}")
 
     print(f"Total de blocos na cadeia: {len(bc.cadeia)}")
     bc.imprimir_cadeia()
