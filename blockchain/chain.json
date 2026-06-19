@@ -1,0 +1,16 @@
+[
+  {
+    "id": 0,
+    "timestamp": "2026-06-19T22:14:13.414665+00:00",
+    "evento": "Bloco genese - inicializacao da blockchain",
+    "hash_anterior": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hash_atual": "2be3ea70dc2c3bbf1fde9cf8ce4b0e63cc99ccf4874659c0171262c1fbf434b7"
+  },
+  {
+    "id": 1,
+    "timestamp": "2026-06-19T22:14:13.426147+00:00",
+    "evento": "Teste manual de execucao do modulo blockchain.py",
+    "hash_anterior": "2be3ea70dc2c3bbf1fde9cf8ce4b0e63cc99ccf4874659c0171262c1fbf434b7",
+    "hash_atual": "6656b8ee4d7c2a083bc536b944054c72ee36a3d0ef8b23af9833289d51a5d99d"
+  }
+]
