@@ -19,5 +19,19 @@
     "evento": "Monitoramento de integridade inicializado com 1 arquivo(s) de referencia",
     "hash_anterior": "6656b8ee4d7c2a083bc536b944054c72ee36a3d0ef8b23af9833289d51a5d99d",
     "hash_atual": "46a847e078c2379ba9beae73b29ccb38cdb36cde580684aef85236fa166cbfc6"
+  },
+  {
+    "id": 3,
+    "timestamp": "2026-06-20T13:34:01.133535+00:00",
+    "evento": "Usuario criado: teste1 (perfil=admin)",
+    "hash_anterior": "46a847e078c2379ba9beae73b29ccb38cdb36cde580684aef85236fa166cbfc6",
+    "hash_atual": "9e20ea46361ede6c01ec2e0465125ab88a0093b53e22ea95dc890b596a1a6046"
+  },
+  {
+    "id": 4,
+    "timestamp": "2026-06-20T13:34:17.058682+00:00",
+    "evento": "Login realizado: usuario=teste1 perfil=admin",
+    "hash_anterior": "9e20ea46361ede6c01ec2e0465125ab88a0093b53e22ea95dc890b596a1a6046",
+    "hash_atual": "d6023d31183b9da3cb6105553c89c809334b98ec8a869fcd883117305abbf931"
   }
 ]
